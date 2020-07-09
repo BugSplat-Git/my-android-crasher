@@ -19,6 +19,19 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              native-lib.cpp )
 
+# Crashpad Libraries
+add_library(crashpad_client STATIC IMPORTED)
+set_property(TARGET crashpad_client PROPERTY IMPORTED_LOCATION ../../../libs/crashpad/libcrashpad_client.a)
+
+add_library(crashpad_util STATIC IMPORTED)
+set_property(TARGET crashpad_util PROPERTY IMPORTED_LOCATION ../../../libs/crashpad/libcrashpad_util.a)
+
+add_library(base STATIC IMPORTED)
+set_property(TARGET base PROPERTY IMPORTED_LOCATION ../../../libs/crashpad/libbase.a)
+
+# Crashpad Headers
+include_directories(../../../libs/crashpad/include/ ../../../libs/crashpad/include/third_party/mini_chromium/mini_chromium/)
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
