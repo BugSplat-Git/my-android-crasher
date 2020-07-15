@@ -11,14 +11,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Example of a call to a native method
-        sample_text.text = stringFromJNI()
+        sample_text.text = if (initializeCrashpad()) "initialized" else "fail"
+
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    external fun stringFromJNI(): String
+    external fun initializeCrashpad(): Boolean
 
     companion object {
         // Used to load the 'native-lib' library on application startup.

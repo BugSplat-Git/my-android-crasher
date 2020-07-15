@@ -21,16 +21,20 @@ add_library( # Sets the name of the library.
 
 # Crashpad Libraries
 add_library(crashpad_client STATIC IMPORTED)
-set_property(TARGET crashpad_client PROPERTY IMPORTED_LOCATION ../../../libs/crashpad/libcrashpad_client.a)
+set_property(TARGET crashpad_client PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/client/libcrashpad_client.a)
 
 add_library(crashpad_util STATIC IMPORTED)
-set_property(TARGET crashpad_util PROPERTY IMPORTED_LOCATION ../../../libs/crashpad/libcrashpad_util.a)
+set_property(TARGET crashpad_util PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/util/libcrashpad_util.a)
 
 add_library(base STATIC IMPORTED)
-set_property(TARGET base PROPERTY IMPORTED_LOCATION ../../../libs/crashpad/libbase.a)
+set_property(TARGET base PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/base/libbase.a)
+
+# Crashpad Handler
+add_library(crashpad_handler SHARED IMPORTED)
+set_property(TARGET crashpad_handler PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/libcrashpad_handler.so)
 
 # Crashpad Headers
-include_directories(../../../libs/crashpad/include/ ../../../libs/crashpad/include/third_party/mini_chromium/mini_chromium/)
+include_directories(${PROJECT_SOURCE_DIR}/crashpad/include/ ${PROJECT_SOURCE_DIR}/crashpad/include/third_party/mini_chromium/mini_chromium/)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -43,7 +47,9 @@ find_library( # Sets the name of the path variable.
 
               # Specifies the name of the NDK library that
               # you want CMake to locate.
-              log )
+              log
+            )
+
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
@@ -54,4 +60,8 @@ target_link_libraries( # Specifies the target library.
 
                        # Links the target library to the log library
                        # included in the NDK.
-                       ${log-lib} )
+                       ${log-lib}
+                        crashpad_client
+                        crashpad_util
+                        base
+        )
