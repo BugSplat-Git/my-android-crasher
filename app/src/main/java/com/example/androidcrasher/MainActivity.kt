@@ -1,7 +1,8 @@
 package com.example.androidcrasher
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,11 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
         sample_text.text = if (initializeCrashpad()) "initialized" else "fail"
+        Handler().postDelayed(this::crashJava, 10000)
+    }
 
+    private fun crashJava() {
+        crash()
     }
 
     /**
@@ -20,6 +25,7 @@ class MainActivity : AppCompatActivity() {
      * which is packaged with this application.
      */
     external fun initializeCrashpad(): Boolean
+    external fun crash(): Boolean
 
     companion object {
         // Used to load the 'native-lib' library on application startup.
