@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
         sample_text.text = if (initializeCrashpad()) "initialized" else "fail"
-        Handler().postDelayed(this::crashJava, 10000)
+        Handler().postDelayed(this::nativeCrash, 10000)
     }
 
-    private fun crashJava() {
+    private fun nativeCrash() {
         crash()
     }
 
