@@ -27,7 +27,7 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     annotations["format"] = "minidump";           // Required: Crashpad setting to save crash as a minidump
     annotations["database"] = "fred";             // Required: BugSplat appName
     annotations["product"] = "AndroidCrasher"; // Required: BugSplat appName
-    annotations["version"] = "1.0.0";             // Required: BugSplat appVersion
+    annotations["version"] = "1.0.1";             // Required: BugSplat appVersion
     annotations["key"] = "Samplekey";            // Optional: BugSplat key field
     annotations["user"] = "fred@bugsplat.com";    // Optional: BugSplat user email
     annotations["list_annotations"] = "Sample comment"; // Optional: BugSplat crash description

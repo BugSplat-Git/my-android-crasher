@@ -8,9 +8,11 @@ This repository contains an Android NDK library integrated with [Crashpad](https
 ### Steps
 1. Install Android Studio, the Android NDK and create an Android emulator
 2. Clone this repository
-3. Build and run the project, it will crash and generate a report automatically
-4. Navigate to BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes?database=Fred&c0=appName&f0=CONTAINS&v0=AndroidCrasher) page to see a list of recent AndroidCrasher crashes
-5. Click the link in the ID column to see full debug information for the generated crash
+3. Build the project, 
+4. Run the [symupload script](https://github.com/BugSplat-Git/AndroidCrasher/tree/symupload/tools) that corresponds to your development system's OS, this is required in order to get function names and line numbers
+5. Run the project without rebuilding, it will crash and generate a report automatically
+6. Navigate to BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes?database=Fred&c0=appName&f0=CONTAINS&v0=AndroidCrasher) page to see a list of recent AndroidCrasher crashes
+7. Click the link in the ID column to see full debug information for the generated crash
 
 ### Additional Considerations
 The Breakpad tool dump_syms was built on a Linux system and needs to run on a compatible system (or subsystem) in order to create the symbol files. This repository includes 3 methods for running dump_syms depending on what system you're using to build the Android project. For Windows, run the dump_syms_windows.ps1 script at build time which uses [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to run dump_syms. On Mac OS X, run dump_syms_osx.sh which uses [linux-noah](https://github.com/linux-noah/noah) (which can be installed by Homebrew) to run dump_syms. On Linux, dump_syms_linux.sh can be invoked directly at build time.

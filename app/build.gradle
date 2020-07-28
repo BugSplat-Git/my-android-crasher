@@ -40,6 +40,12 @@ android {
             version "3.10.2"
         }
     }
+
+    packagingOptions{
+        doNotStrip "*/armeabi/*.so"
+        doNotStrip "*/armeabi-v7a/*.so"
+        doNotStrip "*/x86/*.so"
+    }
 }
 
 dependencies {
