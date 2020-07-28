@@ -9,7 +9,7 @@ This repository contains an Android NDK library integrated with [Crashpad](https
 1. Install Android Studio, the Android NDK and create an Android emulator
 2. Clone this repository
 3. Build the project
-4. Run the [symupload script](https://github.com/BugSplat-Git/AndroidCrasher/tree/symupload/tools) that corresponds to your development system's OS, this is required in order to get function names and line numbers in your crash reports
+4. Run the [symupload script](https://github.com/BugSplat-Git/AndroidCrasher/tree/master/tools) that corresponds to your development system's OS, this is required in order to get function names and line numbers in your crash reports
 5. Run the project without rebuilding, it will crash and generate a report automatically
 6. Navigate to BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes?database=Fred&c0=appName&f0=CONTAINS&v0=AndroidCrasher) page to see a list of recent AndroidCrasher crashes
 7. Click the link in the ID column to see full debug information for the generated crash
