@@ -5,6 +5,11 @@
 #include "client/crash_report_database.h"
 #include "client/settings.h"
 
+void stackFrame1(void);
+void stackFrame2(void);
+void stackFrame3(void);
+void crash(void);
+
 using namespace base;
 using namespace crashpad;
 using namespace std;
@@ -56,8 +61,23 @@ Java_com_example_androidcrasher_MainActivity_crash(
         JNIEnv* env,
         jobject /* this */) {
 
-    *(volatile int *)0 = 0;
+    stackFrame1();
 
     return true;
 }
 
+void stackFrame1() {
+    stackFrame2();
+}
+
+void stackFrame2() {
+    stackFrame3();
+}
+
+void stackFrame3() {
+    crash();
+}
+
+void crash() {
+    *(volatile int *)0 = 0;
+}
