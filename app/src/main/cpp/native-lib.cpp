@@ -19,10 +19,12 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
         JNIEnv* env,
         jobject /* this */) {
 
+    string dataDir = "/data/data/com.example.androidcrasher";
+
     // Crashpad file paths
-    FilePath handler("/data/data/com.example.androidcrasher/lib/libcrashpad_handler.so");
-    FilePath reportsDir("/data/data/com.example.androidcrasher/crashpad");
-    FilePath metricsDir("/data/data/com.example.androidcrasher/crashpad");
+    FilePath handler(dataDir + "/lib/libcrashpad_handler.so");
+    FilePath reportsDir(dataDir + "/crashpad");
+    FilePath metricsDir(dataDir + "/crashpad");
 
     // Crashpad upload URL for BugSplat database
     string url = "http://fred.bugsplat.com/post/bp/crash/crashpad.php";
@@ -50,9 +52,14 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     if (settings == NULL) return false;
     settings->SetUploadsEnabled(true);
 
+    // File paths of attachments to be uploaded with the minidump file at crash time - default bundle limit is 2MB
+    vector<FilePath> attachments;
+    FilePath attachment(dataDir + "/files/attachment.txt");
+    attachments.push_back(attachment);
+
     // Start Crashpad crash handler
     static CrashpadClient *client = new CrashpadClient();
-    bool status = client->StartHandlerAtCrash(handler, reportsDir, metricsDir, url, annotations, arguments);
+    bool status = client->StartHandlerAtCrash(handler, reportsDir, metricsDir, url, annotations, arguments, attachments);
     return status;
 }
 
