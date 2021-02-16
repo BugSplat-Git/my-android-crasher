@@ -1,6 +1,5 @@
 package com.example.androidcrasher
 
-import android.R.attr.data
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -18,7 +17,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         writeLogFile()
-        sample_text.text = if (initializeCrashpad()) "initialized" else "fail"
+
+        val info = applicationInfo
+        val initialized = initializeCrashpad(
+            info.dataDir,
+            info.nativeLibraryDir
+        )
+        val text = if(initialized) "initialized" else "fail"
+
+        sample_text.text = text
     }
 
     public fun btnCrashClick(view: View) {
@@ -45,7 +52,7 @@ class MainActivity : AppCompatActivity() {
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    external fun initializeCrashpad(): Boolean
+    external fun initializeCrashpad(dataDir: String, nativeLibraryDir: String): Boolean
     external fun crash(): Boolean
 
     companion object {

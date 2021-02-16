@@ -17,12 +17,17 @@ using namespace std;
 extern "C" JNIEXPORT jboolean JNICALL
 Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
         JNIEnv* env,
-        jobject /* this */) {
+        jobject /* this */,
+        jstring appDataDir,
+        jstring libDir
+    ) {
 
-    string dataDir = "/data/data/com.example.androidcrasher";
+    // Device file paths
+    string nativeLibraryDir = env->GetStringUTFChars(libDir, 0);
+    string dataDir = env->GetStringUTFChars(appDataDir, 0);
 
     // Crashpad file paths
-    FilePath handler(dataDir + "/lib/libcrashpad_handler.so");
+    FilePath handler(nativeLibraryDir + "/libcrashpad_handler.so");
     FilePath reportsDir(dataDir + "/crashpad");
     FilePath metricsDir(dataDir + "/crashpad");
 
