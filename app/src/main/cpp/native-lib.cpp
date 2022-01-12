@@ -57,7 +57,7 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     if (settings == NULL) return false;
     settings->SetUploadsEnabled(true);
 
-    // File paths of attachments to be uploaded with the minidump file at crash time - default bundle limit is 2MB
+    // File paths of attachments to be uploaded with the minidump file at crash time - default bundle limit is 20MB
     vector<FilePath> attachments;
     FilePath attachment(dataDir + "/files/attachment.txt");
     attachments.push_back(attachment);
