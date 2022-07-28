@@ -15,9 +15,9 @@
 #ifndef CRASHPAD_COMPAT_ANDROID_ELF_H_
 #define CRASHPAD_COMPAT_ANDROID_ELF_H_
 
-#include_next "elf.h"
+#include_next <elf.h>
 
-#include "android/api-level.h"
+#include <android/api-level.h>
 
 #if !defined(ELF32_ST_VISIBILITY)
 #define ELF32_ST_VISIBILITY(other) ((other) & 0x3)

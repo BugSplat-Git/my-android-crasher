@@ -15,7 +15,12 @@
 #ifndef CRASHPAD_COMPAT_LINUX_SIGNAL_H_
 #define CRASHPAD_COMPAT_LINUX_SIGNAL_H_
 
-#include_next "signal.h"
+#include_next <signal.h>
+
+// Missing from glibc and bionic
+#if !defined(SS_AUTODISARM)
+#define SS_AUTODISARM (1u << 31)
+#endif
 
 // Missing from glibc and bionic-x86_64
 

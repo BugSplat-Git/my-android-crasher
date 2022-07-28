@@ -1,0 +1,8 @@
+defines =
+framework_dirs =
+include_dirs = -I../.. -Igen -I../../third_party/mini_chromium/mini_chromium
+label_name = no_cfi_icall
+target_output_name = no_cfi_icall
+
+
+build obj/util/no_cfi_icall.stamp: stamp || obj/third_party/mini_chromium/build.stamp obj/third_party/mini_chromium/mini_chromium/build/build.stamp obj/third_party/mini_chromium/mini_chromium/build/buildflag_header_h.stamp

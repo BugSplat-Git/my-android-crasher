@@ -1,0 +1,35 @@
+defines = -DCRASHPAD_ZLIB_SOURCE_SYSTEM
+framework_dirs =
+include_dirs = -I../.. -Igen -I../../third_party/mini_chromium/mini_chromium -I../../compat/linux -I../../compat/android -I../../compat/non_win
+asmflags =
+cflags = -Wall -Wendif-labels -Werror -Wextra -Wextra-semi -Wheader-hygiene -Wnewline-eof -Wno-missing-field-initializers -Wno-unused-parameter -Wsign-compare -Wstring-conversion -Wvla -fno-exceptions -fno-rtti -fno-strict-aliasing -fobjc-call-cxx-cdtors -fstack-protector-all -fvisibility-inlines-hidden -fvisibility=hidden -fPIC -g -Wexit-time-destructors -Wimplicit-fallthrough
+cflags_cc = -std=c++17
+label_name = common
+target_output_name = libcommon
+
+build obj/client/common.annotation.o: cxx ../../client/annotation.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = annotation.cc
+  source_name_part = annotation
+build obj/client/common.annotation_list.o: cxx ../../client/annotation_list.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = annotation_list.cc
+  source_name_part = annotation_list
+build obj/client/common.crash_report_database.o: cxx ../../client/crash_report_database.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = crash_report_database.cc
+  source_name_part = crash_report_database
+build obj/client/common.crashpad_info.o: cxx ../../client/crashpad_info.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = crashpad_info.cc
+  source_name_part = crashpad_info
+build obj/client/common.settings.o: cxx ../../client/settings.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = settings.cc
+  source_name_part = settings
+build obj/client/common.crash_report_database_generic.o: cxx ../../client/crash_report_database_generic.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = crash_report_database_generic.cc
+  source_name_part = crash_report_database_generic
+build obj/client/common.crashpad_info_note.o: asm ../../client/crashpad_info_note.S || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = crashpad_info_note.S
+  source_name_part = crashpad_info_note
+
+build obj/client/libcommon.a: alink obj/client/common.annotation.o obj/client/common.annotation_list.o obj/client/common.crash_report_database.o obj/client/common.crashpad_info.o obj/client/common.settings.o obj/client/common.crash_report_database_generic.o obj/client/common.crashpad_info_note.o || obj/third_party/mini_chromium/base.stamp obj/util/libutil.a obj/third_party/mini_chromium/mini_chromium/base/libbase.a obj/third_party/mini_chromium/mini_chromium/build/build.stamp obj/third_party/mini_chromium/mini_chromium/build/buildflag_header_h.stamp obj/util/no_cfi_icall.stamp obj/compat/libcompat.a obj/third_party/zlib/zlib.stamp obj/third_party/lss/lss.stamp
+  arflags =
+  output_extension = .a
+  output_dir = obj/client

@@ -15,7 +15,7 @@
 #ifndef CRASHPAD_COMPAT_ANDROID_SCHED_H_
 #define CRASHPAD_COMPAT_ANDROID_SCHED_H_
 
-#include_next "sched.h"
+#include_next <sched.h>
 
 // Android 5.0.0 (API 21) NDK
 

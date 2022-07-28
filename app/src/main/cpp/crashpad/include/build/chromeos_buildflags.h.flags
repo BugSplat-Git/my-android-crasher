@@ -1,0 +1,3 @@
+--flags
+IS_CHROMEOS_LACROS=false
+IS_CHROMEOS_ASH=false
