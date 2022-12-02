@@ -1,0 +1,13 @@
+defines = -DCRASHPAD_ZLIB_SOURCE_SYSTEM
+framework_dirs =
+include_dirs = -I../.. -Igen -I../../third_party/mini_chromium/mini_chromium -I../../compat/linux -I../../compat/android -I../../compat/non_win
+cflags = -Wall -Wendif-labels -Werror -Wextra -Wextra-semi -Wheader-hygiene -Wnewline-eof -Wno-missing-field-initializers -Wno-unused-parameter -Wsign-compare -Wstring-conversion -Wvla -fno-exceptions -fno-rtti -fno-strict-aliasing -fobjc-call-cxx-cdtors -fstack-protector-all -fvisibility-inlines-hidden -fvisibility=hidden -fPIC -g -Wexit-time-destructors -Wimplicit-fallthrough
+cflags_cc = -std=c++17
+label_name = pthread_create
+target_output_name = pthread_create
+
+build obj/client/pthread_create.pthread_create_linux.o: cxx ../../client/pthread_create_linux.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = pthread_create_linux.cc
+  source_name_part = pthread_create_linux
+
+build obj/client/pthread_create.stamp: stamp obj/client/pthread_create.pthread_create_linux.o || obj/client/libclient.a obj/client/libcommon.a obj/third_party/mini_chromium/mini_chromium/base/libbase.a obj/third_party/mini_chromium/mini_chromium/build/build.stamp obj/third_party/mini_chromium/mini_chromium/build/buildflag_header_h.stamp obj/util/libutil.a obj/util/no_cfi_icall.stamp obj/compat/libcompat.a obj/third_party/zlib/zlib.stamp obj/third_party/lss/lss.stamp
