@@ -27,7 +27,8 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     string dataDir = env->GetStringUTFChars(appDataDir, 0);
 
     // Crashpad file paths
-    FilePath handler(nativeLibraryDir + "/libcrashpad_handler.so");
+    //FilePath handler(nativeLibraryDir + "/libcrashpad_handler.so");
+    string trampoline = nativeLibraryDir + "/libcrashpad_handler_trampoline.so";
     FilePath reportsDir(dataDir + "/crashpad");
     FilePath metricsDir(dataDir + "/crashpad");
 
@@ -62,9 +63,23 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     FilePath attachment(dataDir + "/files/attachment.txt");
     attachments.push_back(attachment);
 
+    // env?
+    std::vector<std::string> *envVars = new std::vector<std::string>;
+    envVars->push_back("LD_LIBRARY_PATH=" + nativeLibraryDir);
+
     // Start Crashpad crash handler
     static CrashpadClient *client = new CrashpadClient();
-    bool status = client->StartHandlerAtCrash(handler, reportsDir, metricsDir, url, annotations, arguments, attachments);
+    bool status = client->StartHandlerWithLinkerAtCrash(
+            trampoline,
+            "crashpad_handler",
+            false,
+            envVars, // TODO BG
+            reportsDir,
+            metricsDir,
+            url,
+            annotations,
+            arguments
+        );
     return status;
 }
 
