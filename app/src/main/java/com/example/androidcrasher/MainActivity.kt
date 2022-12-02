@@ -5,16 +5,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.androidcrasher.databinding.ActivityMainBinding
 import java.io.IOException
 import java.io.OutputStreamWriter
 
-
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         writeLogFile()
 
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         )
         val text = if(initialized) "initialized" else "fail"
 
-        sample_text.text = text
+        binding.sampleText.text = text;
     }
 
     public fun btnCrashClick(view: View) {

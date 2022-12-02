@@ -1,15 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.example.androidcrasher"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 
@@ -23,23 +21,27 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['src/main/cpp/crashpad/lib']
         }
     }
-
-    packagingOptions{
-        doNotStrip "*/armeabi/*.so"
-        doNotStrip "*/armeabi-v7a/*.so"
-        doNotStrip "*/x86/*.so"
-        doNotStrip "*/x86_64/*.so"
+    packagingOptions {
+        jniLibs {
+            keepDebugSymbols += ['*/armeabi/*.so', '*/armeabi-v7a/*.so', '*/x86/*.so', '*/x86_64/*.so']
+        }
     }
+
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
         }
     }
+    namespace 'com.example.androidcrasher'
 }
 
 dependencies {
