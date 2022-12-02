@@ -1,0 +1,230 @@
+defines = -DZLIB_CONST -DCRASHPAD_FLOCK_ALWAYS_SUPPORTED=false -DCRASHPAD_ZLIB_SOURCE_SYSTEM -DCRASHPAD_LSS_SOURCE_EMBEDDED
+framework_dirs =
+include_dirs = -Igen/third_party/crashpad/crashpad -I../.. -Igen -I../../third_party/mini_chromium/mini_chromium -I../../compat/linux -I../../compat/android -I../../compat/non_win
+asmflags =
+cflags = -Wall -Wendif-labels -Werror -Wextra -Wextra-semi -Wheader-hygiene -Wnewline-eof -Wno-missing-field-initializers -Wno-unused-parameter -Wsign-compare -Wstring-conversion -Wvla -fno-exceptions -fno-rtti -fno-strict-aliasing -fobjc-call-cxx-cdtors -fstack-protector-all -fvisibility-inlines-hidden -fvisibility=hidden -fPIC -g -Wexit-time-destructors -Wimplicit-fallthrough
+cflags_cc = -std=c++17
+label_name = util
+target_output_name = libutil
+
+build obj/util/file/util.delimited_file_reader.o: cxx ../../util/file/delimited_file_reader.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = delimited_file_reader.cc
+  source_name_part = delimited_file_reader
+build obj/util/file/util.file_helper.o: cxx ../../util/file/file_helper.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_helper.cc
+  source_name_part = file_helper
+build obj/util/file/util.file_io.o: cxx ../../util/file/file_io.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_io.cc
+  source_name_part = file_io
+build obj/util/file/util.file_reader.o: cxx ../../util/file/file_reader.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_reader.cc
+  source_name_part = file_reader
+build obj/util/file/util.file_seeker.o: cxx ../../util/file/file_seeker.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_seeker.cc
+  source_name_part = file_seeker
+build obj/util/file/util.file_writer.o: cxx ../../util/file/file_writer.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_writer.cc
+  source_name_part = file_writer
+build obj/util/file/util.output_stream_file_writer.o: cxx ../../util/file/output_stream_file_writer.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = output_stream_file_writer.cc
+  source_name_part = output_stream_file_writer
+build obj/util/file/util.scoped_remove_file.o: cxx ../../util/file/scoped_remove_file.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_remove_file.cc
+  source_name_part = scoped_remove_file
+build obj/util/file/util.string_file.o: cxx ../../util/file/string_file.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = string_file.cc
+  source_name_part = string_file
+build obj/util/misc/util.initialization_state_dcheck.o: cxx ../../util/misc/initialization_state_dcheck.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = initialization_state_dcheck.cc
+  source_name_part = initialization_state_dcheck
+build obj/util/misc/util.lexing.o: cxx ../../util/misc/lexing.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = lexing.cc
+  source_name_part = lexing
+build obj/util/misc/util.metrics.o: cxx ../../util/misc/metrics.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = metrics.cc
+  source_name_part = metrics
+build obj/util/misc/util.pdb_structures.o: cxx ../../util/misc/pdb_structures.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = pdb_structures.cc
+  source_name_part = pdb_structures
+build obj/util/misc/util.random_string.o: cxx ../../util/misc/random_string.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = random_string.cc
+  source_name_part = random_string
+build obj/util/misc/util.range_set.o: cxx ../../util/misc/range_set.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = range_set.cc
+  source_name_part = range_set
+build obj/util/misc/util.reinterpret_bytes.o: cxx ../../util/misc/reinterpret_bytes.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = reinterpret_bytes.cc
+  source_name_part = reinterpret_bytes
+build obj/util/misc/util.scoped_forbid_return.o: cxx ../../util/misc/scoped_forbid_return.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_forbid_return.cc
+  source_name_part = scoped_forbid_return
+build obj/util/misc/util.time.o: cxx ../../util/misc/time.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = time.cc
+  source_name_part = time
+build obj/util/misc/util.uuid.o: cxx ../../util/misc/uuid.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = uuid.cc
+  source_name_part = uuid
+build obj/util/misc/util.zlib.o: cxx ../../util/misc/zlib.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = zlib.cc
+  source_name_part = zlib
+build obj/util/numeric/util.checked_address_range.o: cxx ../../util/numeric/checked_address_range.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = checked_address_range.cc
+  source_name_part = checked_address_range
+build obj/util/process/util.process_memory.o: cxx ../../util/process/process_memory.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = process_memory.cc
+  source_name_part = process_memory
+build obj/util/process/util.process_memory_range.o: cxx ../../util/process/process_memory_range.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = process_memory_range.cc
+  source_name_part = process_memory_range
+build obj/util/stdlib/util.aligned_allocator.o: cxx ../../util/stdlib/aligned_allocator.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = aligned_allocator.cc
+  source_name_part = aligned_allocator
+build obj/util/stdlib/util.string_number_conversion.o: cxx ../../util/stdlib/string_number_conversion.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = string_number_conversion.cc
+  source_name_part = string_number_conversion
+build obj/util/stdlib/util.strlcpy.o: cxx ../../util/stdlib/strlcpy.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = strlcpy.cc
+  source_name_part = strlcpy
+build obj/util/stdlib/util.strnlen.o: cxx ../../util/stdlib/strnlen.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = strnlen.cc
+  source_name_part = strnlen
+build obj/util/stream/util.base94_output_stream.o: cxx ../../util/stream/base94_output_stream.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = base94_output_stream.cc
+  source_name_part = base94_output_stream
+build obj/util/stream/util.file_encoder.o: cxx ../../util/stream/file_encoder.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_encoder.cc
+  source_name_part = file_encoder
+build obj/util/stream/util.file_output_stream.o: cxx ../../util/stream/file_output_stream.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_output_stream.cc
+  source_name_part = file_output_stream
+build obj/util/stream/util.log_output_stream.o: cxx ../../util/stream/log_output_stream.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = log_output_stream.cc
+  source_name_part = log_output_stream
+build obj/util/stream/util.zlib_output_stream.o: cxx ../../util/stream/zlib_output_stream.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = zlib_output_stream.cc
+  source_name_part = zlib_output_stream
+build obj/util/string/util.split_string.o: cxx ../../util/string/split_string.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = split_string.cc
+  source_name_part = split_string
+build obj/util/thread/util.thread.o: cxx ../../util/thread/thread.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = thread.cc
+  source_name_part = thread
+build obj/util/thread/util.thread_log_messages.o: cxx ../../util/thread/thread_log_messages.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = thread_log_messages.cc
+  source_name_part = thread_log_messages
+build obj/util/thread/util.worker_thread.o: cxx ../../util/thread/worker_thread.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = worker_thread.cc
+  source_name_part = worker_thread
+build obj/util/file/util.directory_reader_posix.o: cxx ../../util/file/directory_reader_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = directory_reader_posix.cc
+  source_name_part = directory_reader_posix
+build obj/util/file/util.file_io_posix.o: cxx ../../util/file/file_io_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = file_io_posix.cc
+  source_name_part = file_io_posix
+build obj/util/file/util.filesystem_posix.o: cxx ../../util/file/filesystem_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = filesystem_posix.cc
+  source_name_part = filesystem_posix
+build obj/util/misc/util.clock_posix.o: cxx ../../util/misc/clock_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = clock_posix.cc
+  source_name_part = clock_posix
+build obj/util/posix/util.close_stdio.o: cxx ../../util/posix/close_stdio.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = close_stdio.cc
+  source_name_part = close_stdio
+build obj/util/posix/util.scoped_dir.o: cxx ../../util/posix/scoped_dir.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_dir.cc
+  source_name_part = scoped_dir
+build obj/util/posix/util.scoped_mmap.o: cxx ../../util/posix/scoped_mmap.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_mmap.cc
+  source_name_part = scoped_mmap
+build obj/util/posix/util.signals.o: cxx ../../util/posix/signals.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = signals.cc
+  source_name_part = signals
+build obj/util/synchronization/util.semaphore_posix.o: cxx ../../util/synchronization/semaphore_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = semaphore_posix.cc
+  source_name_part = semaphore_posix
+build obj/util/thread/util.thread_posix.o: cxx ../../util/thread/thread_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = thread_posix.cc
+  source_name_part = thread_posix
+build obj/util/posix/util.close_multiple.o: cxx ../../util/posix/close_multiple.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = close_multiple.cc
+  source_name_part = close_multiple
+build obj/util/posix/util.drop_privileges.o: cxx ../../util/posix/drop_privileges.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = drop_privileges.cc
+  source_name_part = drop_privileges
+build obj/util/posix/util.spawn_subprocess.o: cxx ../../util/posix/spawn_subprocess.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = spawn_subprocess.cc
+  source_name_part = spawn_subprocess
+build obj/util/posix/util.symbolic_constants_posix.o: cxx ../../util/posix/symbolic_constants_posix.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = symbolic_constants_posix.cc
+  source_name_part = symbolic_constants_posix
+build obj/util/linux/util.initial_signal_dispositions.o: cxx ../../util/linux/initial_signal_dispositions.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = initial_signal_dispositions.cc
+  source_name_part = initial_signal_dispositions
+build obj/util/linux/util.auxiliary_vector.o: cxx ../../util/linux/auxiliary_vector.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = auxiliary_vector.cc
+  source_name_part = auxiliary_vector
+build obj/util/linux/util.direct_ptrace_connection.o: cxx ../../util/linux/direct_ptrace_connection.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = direct_ptrace_connection.cc
+  source_name_part = direct_ptrace_connection
+build obj/util/linux/util.exception_handler_client.o: cxx ../../util/linux/exception_handler_client.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = exception_handler_client.cc
+  source_name_part = exception_handler_client
+build obj/util/linux/util.exception_handler_protocol.o: cxx ../../util/linux/exception_handler_protocol.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = exception_handler_protocol.cc
+  source_name_part = exception_handler_protocol
+build obj/util/linux/util.memory_map.o: cxx ../../util/linux/memory_map.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = memory_map.cc
+  source_name_part = memory_map
+build obj/util/linux/util.proc_stat_reader.o: cxx ../../util/linux/proc_stat_reader.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = proc_stat_reader.cc
+  source_name_part = proc_stat_reader
+build obj/util/linux/util.proc_task_reader.o: cxx ../../util/linux/proc_task_reader.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = proc_task_reader.cc
+  source_name_part = proc_task_reader
+build obj/util/linux/util.ptrace_broker.o: cxx ../../util/linux/ptrace_broker.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = ptrace_broker.cc
+  source_name_part = ptrace_broker
+build obj/util/linux/util.ptrace_client.o: cxx ../../util/linux/ptrace_client.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = ptrace_client.cc
+  source_name_part = ptrace_client
+build obj/util/linux/util.ptracer.o: cxx ../../util/linux/ptracer.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = ptracer.cc
+  source_name_part = ptracer
+build obj/util/linux/util.scoped_pr_set_dumpable.o: cxx ../../util/linux/scoped_pr_set_dumpable.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_pr_set_dumpable.cc
+  source_name_part = scoped_pr_set_dumpable
+build obj/util/linux/util.scoped_pr_set_ptracer.o: cxx ../../util/linux/scoped_pr_set_ptracer.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_pr_set_ptracer.cc
+  source_name_part = scoped_pr_set_ptracer
+build obj/util/linux/util.scoped_ptrace_attach.o: cxx ../../util/linux/scoped_ptrace_attach.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = scoped_ptrace_attach.cc
+  source_name_part = scoped_ptrace_attach
+build obj/util/linux/util.socket.o: cxx ../../util/linux/socket.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = socket.cc
+  source_name_part = socket
+build obj/util/linux/util.thread_info.o: cxx ../../util/linux/thread_info.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = thread_info.cc
+  source_name_part = thread_info
+build obj/util/misc/util.capture_context_linux.o: asm ../../util/misc/capture_context_linux.S || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = capture_context_linux.S
+  source_name_part = capture_context_linux
+build obj/util/misc/util.paths_linux.o: cxx ../../util/misc/paths_linux.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = paths_linux.cc
+  source_name_part = paths_linux
+build obj/util/misc/util.time_linux.o: cxx ../../util/misc/time_linux.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = time_linux.cc
+  source_name_part = time_linux
+build obj/util/posix/util.process_info_linux.o: cxx ../../util/posix/process_info_linux.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = process_info_linux.cc
+  source_name_part = process_info_linux
+build obj/util/process/util.process_memory_linux.o: cxx ../../util/process/process_memory_linux.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = process_memory_linux.cc
+  source_name_part = process_memory_linux
+build obj/util/process/util.process_memory_sanitized.o: cxx ../../util/process/process_memory_sanitized.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = process_memory_sanitized.cc
+  source_name_part = process_memory_sanitized
+
+build obj/util/libutil.a: alink obj/util/file/util.delimited_file_reader.o obj/util/file/util.file_helper.o obj/util/file/util.file_io.o obj/util/file/util.file_reader.o obj/util/file/util.file_seeker.o obj/util/file/util.file_writer.o obj/util/file/util.output_stream_file_writer.o obj/util/file/util.scoped_remove_file.o obj/util/file/util.string_file.o obj/util/misc/util.initialization_state_dcheck.o obj/util/misc/util.lexing.o obj/util/misc/util.metrics.o obj/util/misc/util.pdb_structures.o obj/util/misc/util.random_string.o obj/util/misc/util.range_set.o obj/util/misc/util.reinterpret_bytes.o obj/util/misc/util.scoped_forbid_return.o obj/util/misc/util.time.o obj/util/misc/util.uuid.o obj/util/misc/util.zlib.o obj/util/numeric/util.checked_address_range.o obj/util/process/util.process_memory.o obj/util/process/util.process_memory_range.o obj/util/stdlib/util.aligned_allocator.o obj/util/stdlib/util.string_number_conversion.o obj/util/stdlib/util.strlcpy.o obj/util/stdlib/util.strnlen.o obj/util/stream/util.base94_output_stream.o obj/util/stream/util.file_encoder.o obj/util/stream/util.file_output_stream.o obj/util/stream/util.log_output_stream.o obj/util/stream/util.zlib_output_stream.o obj/util/string/util.split_string.o obj/util/thread/util.thread.o obj/util/thread/util.thread_log_messages.o obj/util/thread/util.worker_thread.o obj/util/file/util.directory_reader_posix.o obj/util/file/util.file_io_posix.o obj/util/file/util.filesystem_posix.o obj/util/misc/util.clock_posix.o obj/util/posix/util.close_stdio.o obj/util/posix/util.scoped_dir.o obj/util/posix/util.scoped_mmap.o obj/util/posix/util.signals.o obj/util/synchronization/util.semaphore_posix.o obj/util/thread/util.thread_posix.o obj/util/posix/util.close_multiple.o obj/util/posix/util.drop_privileges.o obj/util/posix/util.spawn_subprocess.o obj/util/posix/util.symbolic_constants_posix.o obj/util/linux/util.initial_signal_dispositions.o obj/util/linux/util.auxiliary_vector.o obj/util/linux/util.direct_ptrace_connection.o obj/util/linux/util.exception_handler_client.o obj/util/linux/util.exception_handler_protocol.o obj/util/linux/util.memory_map.o obj/util/linux/util.proc_stat_reader.o obj/util/linux/util.proc_task_reader.o obj/util/linux/util.ptrace_broker.o obj/util/linux/util.ptrace_client.o obj/util/linux/util.ptracer.o obj/util/linux/util.scoped_pr_set_dumpable.o obj/util/linux/util.scoped_pr_set_ptracer.o obj/util/linux/util.scoped_ptrace_attach.o obj/util/linux/util.socket.o obj/util/linux/util.thread_info.o obj/util/misc/util.capture_context_linux.o obj/util/misc/util.paths_linux.o obj/util/misc/util.time_linux.o obj/util/posix/util.process_info_linux.o obj/util/process/util.process_memory_linux.o obj/util/process/util.process_memory_sanitized.o || obj/util/no_cfi_icall.stamp obj/compat/libcompat.a obj/third_party/zlib/zlib.stamp obj/third_party/mini_chromium/base.stamp obj/third_party/mini_chromium/chromeos_buildflags.stamp obj/third_party/lss/lss.stamp obj/third_party/mini_chromium/mini_chromium/build/build.stamp obj/third_party/mini_chromium/mini_chromium/build/buildflag_header_h.stamp obj/third_party/mini_chromium/mini_chromium/base/libbase.a
+  arflags =
+  output_extension = .a
+  output_dir = obj/util

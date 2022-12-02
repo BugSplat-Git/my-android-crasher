@@ -1,0 +1,31 @@
+defines = -DCRASHPAD_ZLIB_SOURCE_SYSTEM
+framework_dirs =
+include_dirs = -I../.. -Igen -I../../third_party/mini_chromium/mini_chromium -I../../compat/linux -I../../compat/android -I../../compat/non_win
+cflags = -Wall -Wendif-labels -Werror -Wextra -Wextra-semi -Wheader-hygiene -Wnewline-eof -Wno-missing-field-initializers -Wno-unused-parameter -Wsign-compare -Wstring-conversion -Wvla -fno-exceptions -fno-rtti -fno-strict-aliasing -fobjc-call-cxx-cdtors -fstack-protector-all -fvisibility-inlines-hidden -fvisibility=hidden -fPIC -g -Wexit-time-destructors -Wimplicit-fallthrough
+cflags_cc = -std=c++17
+label_name = net
+target_output_name = libnet
+
+build obj/util/net/net.http_body.o: cxx ../../util/net/http_body.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = http_body.cc
+  source_name_part = http_body
+build obj/util/net/net.http_body_gzip.o: cxx ../../util/net/http_body_gzip.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = http_body_gzip.cc
+  source_name_part = http_body_gzip
+build obj/util/net/net.http_multipart_builder.o: cxx ../../util/net/http_multipart_builder.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = http_multipart_builder.cc
+  source_name_part = http_multipart_builder
+build obj/util/net/net.http_transport.o: cxx ../../util/net/http_transport.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = http_transport.cc
+  source_name_part = http_transport
+build obj/util/net/net.url.o: cxx ../../util/net/url.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = url.cc
+  source_name_part = url
+build obj/util/net/net.http_transport_socket.o: cxx ../../util/net/http_transport_socket.cc || obj/third_party/mini_chromium/mini_chromium/build/chromeos_buildflags.stamp
+  source_file_part = http_transport_socket.cc
+  source_name_part = http_transport_socket
+
+build obj/util/libnet.a: alink obj/util/net/net.http_body.o obj/util/net/net.http_body_gzip.o obj/util/net/net.http_multipart_builder.o obj/util/net/net.http_transport.o obj/util/net/net.url.o obj/util/net/net.http_transport_socket.o || obj/util/libutil.a obj/third_party/mini_chromium/base.stamp obj/util/no_cfi_icall.stamp obj/third_party/mini_chromium/mini_chromium/build/build.stamp obj/third_party/mini_chromium/mini_chromium/build/buildflag_header_h.stamp obj/compat/libcompat.a obj/third_party/mini_chromium/mini_chromium/base/libbase.a obj/third_party/zlib/zlib.stamp obj/third_party/lss/lss.stamp
+  arflags =
+  output_extension = .a
+  output_dir = obj/util
