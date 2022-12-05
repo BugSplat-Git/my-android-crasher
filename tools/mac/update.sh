@@ -1,6 +1,6 @@
 # Variables
 CRASHPAD_DIR="/Users/bobby/Desktop/bugsplat/crashpad"
-ANDROID_ABIS=( "arm64-v8a" "armeabi-v71" "x86" "x86_64" )
+ANDROID_ABIS=( "arm64-v8a" "armeabi-v7a" "x86" "x86_64" )
 PROJECT_DIR="/Users/bobby/Desktop/bugsplat/my-android-crasher"
 
 # Start in the Crashpad dir
