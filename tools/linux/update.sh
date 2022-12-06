@@ -1,7 +1,7 @@
 # Variables
 CRASHPAD_DIR="/home/bobby/Desktop/github/crashpad"
 ANDROID_ABIS=( "arm64-v8a" "armeabi-v7a" "x86" "x86_64" )
-PROJECT_DIR="/home/bobby/Desktop/github/my-android-crasher"
+PROJECT_DIR="/home/bobby/Desktop//my-android-crasher"
 
 # Start in the Crashpad dir
 cd $CRASHPAD_DIR
