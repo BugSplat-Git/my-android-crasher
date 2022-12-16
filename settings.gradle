@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "AndroidCrasher"
+rootProject.name = "my-android-crasher"
