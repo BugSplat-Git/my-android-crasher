@@ -1,11 +1,11 @@
-package com.example.androidcrasher
+package com.bugsplat.my_android_crasher
 
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidcrasher.databinding.ActivityMainBinding
+import com.bugsplat.my_android_crasher.databinding.ActivityMainBinding
 import java.io.IOException
 import java.io.OutputStreamWriter
 
@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
         )
         val text = if(initialized) "initialized" else "fail"
 
-        binding.sampleText.text = text;
+        binding.sampleText.text = text
     }
 
-    public fun btnCrashClick(view: View) {
+    fun btnCrashClick(view: View) {
         // Example of a call to a native method
         crash()
     }
