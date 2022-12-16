@@ -33,9 +33,7 @@ git clone https://github.com/BugSplat-Git/my-android.git
 
 [Symbols](https://docs.bugsplat.com/introduction/development/working-with-symbol-files#what-are-symbols) or `.sym` files are required to display function names and line numbers in Android NDK crash reports. To generate `.sym` files you'll need to run `dump_syms` on a Linux system or a Windows system via [WSL](https://learn.microsoft.com/en-us/windows/wsl/about).
 
-You can run one the [symupload scripts](https://github.com/BugSplat-Git/my-android-crasher/tree/master/tools) in the tools folder to generate and upload symbols during development. It's important that the [version you use in the URL](https://github.com/BugSplat-Git/my-android-crasher/blob/master/tools/symupload-linux.sh#L5) when uploading symbols matches the [version used for crash uploads](https://github.com/BugSplat-Git/my-android-crasher/blob/master/app/src/main/cpp/native-lib.cpp#L42).
-
-A GitHub build action has been confgured to upload `.sym` files for this repo. At a minimum, symbols should be uploaded for each public release of your app.
+You can run one the [symupload scripts](https://github.com/BugSplat-Git/my-android-crasher/tree/master/tools) in the tools folder to generate and upload symbols during development. It's important that the [version you use in the URL](https://github.com/BugSplat-Git/my-android-crasher/blob/master/tools/symupload-linux.sh#L5) when uploading symbols matches the [version used for crash uploads](https://github.com/BugSplat-Git/my-android-crasher/blob/master/app/src/main/cpp/native-lib.cpp#L42). At a minimum, symbols should be uploaded for each public release of your app.
 
 ## 💥 Testing
 
