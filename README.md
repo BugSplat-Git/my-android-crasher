@@ -45,7 +45,7 @@ Navigate to BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes?database=Fr
 
 If everything went correctly, you should see something that resembles the following.
 
-// TODO BG
+![BugSplat Crash Page](https://user-images.githubusercontent.com/2646053/208204524-2c55283f-410d-4b2e-b8de-51f58ce91bac.png)
 
 ## ⚙️ Integration
 
