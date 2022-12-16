@@ -6,19 +6,12 @@ android {
 
     defaultConfig {
         applicationId "com.example.androidcrasher"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        externalNativeBuild {
-            cmake {
-                cppFlags ""
-                arguments '-DANDROID_STL=c++_shared'
-            }
-        }
     }
 
     buildTypes {
@@ -39,7 +32,7 @@ android {
     }
     packagingOptions {
         jniLibs {
-            keepDebugSymbols += ['*/armeabi/*.so', '*/armeabi-v7a/*.so', '*/x86/*.so', '*/x86_64/*.so']
+            keepDebugSymbols += ['*/armeabi/*.so', '*/armeabi-v7a/*.so', '*/x86_64/*.so']
         }
     }
 

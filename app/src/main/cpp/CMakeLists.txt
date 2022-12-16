@@ -20,8 +20,8 @@ add_library( # Sets the name of the library.
              native-lib.cpp )
 
 # Crashpad Libraries
-add_library(crashpad_common STATIC IMPORTED)
-set_property(TARGET crashpad_common PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/client/libcommon.a)
+add_library(crashpad_client_common STATIC IMPORTED)
+set_property(TARGET crashpad_client_common PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/client/libcommon.a)
 
 add_library(crashpad_client STATIC IMPORTED)
 set_property(TARGET crashpad_client PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/crashpad/lib/${ANDROID_ABI}/client/libclient.a)
@@ -60,7 +60,7 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib}
-                        crashpad_common
+                        crashpad_client_common
                         crashpad_client
                         crashpad_util
                         base

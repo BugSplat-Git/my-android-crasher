@@ -37,6 +37,5 @@ do
 
     # Copy Handler
     cp $CRASHPAD_OUT/libcrashpad_handler.so $PROJECT_DIR/app/src/main/cpp/crashpad/lib/$ANDROID_ABI
-    cp $CRASHPAD_OUT/libcrashpad_handler_trampoline.so $PROJECT_DIR/app/src/main/cpp/crashpad/lib/$ANDROID_ABI
 
 done

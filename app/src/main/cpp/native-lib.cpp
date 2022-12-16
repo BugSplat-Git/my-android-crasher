@@ -21,19 +21,17 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
         jstring appDataDir,
         jstring libDir
     ) {
-
     // Device file paths
     string nativeLibraryDir = env->GetStringUTFChars(libDir, 0);
     string dataDir = env->GetStringUTFChars(appDataDir, 0);
 
     // Crashpad file paths
-    //FilePath handler(nativeLibraryDir + "/libcrashpad_handler.so");
-    string trampoline = nativeLibraryDir + "/libcrashpad_handler_trampoline.so";
+    FilePath handler(nativeLibraryDir + "/libcrashpad_handler.so");
     FilePath reportsDir(dataDir + "/crashpad");
     FilePath metricsDir(dataDir + "/crashpad");
 
     // Crashpad upload URL for BugSplat database
-    string url = "http://fred.bugsplat.com/post/bp/crash/crashpad.php";
+    string url = "https://fred.bugsplat.com/post/bp/crash/crashpad.php";
 
     // Crashpad annotations
     map<string, string> annotations;
@@ -63,23 +61,17 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     FilePath attachment(dataDir + "/files/attachment.txt");
     attachments.push_back(attachment);
 
-    // env?
-    std::vector<std::string> *envVars = new std::vector<std::string>;
-    envVars->push_back("LD_LIBRARY_PATH=" + nativeLibraryDir);
-
     // Start Crashpad crash handler
     static CrashpadClient *client = new CrashpadClient();
-    bool status = client->StartHandlerWithLinkerAtCrash(
-            trampoline,
-            "crashpad_handler",
-            false,
-            envVars, // TODO BG
-            reportsDir,
-            metricsDir,
-            url,
-            annotations,
-            arguments
-        );
+    bool status = client->StartHandlerAtCrash(
+        handler,
+        reportsDir,
+        metricsDir,
+        url,
+        annotations,
+        arguments,
+        attachments
+    );
     return status;
 }
 
