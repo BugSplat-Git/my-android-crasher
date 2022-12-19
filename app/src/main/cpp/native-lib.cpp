@@ -5,6 +5,13 @@
 #include "client/crash_report_database.h"
 #include "client/settings.h"
 
+// Uncomment and replace value with your BugSplat database name
+// #define BUGSPLAT_DATABASE "your-database-here"
+
+#ifndef BUGSPLAT_DATABASE
+#error "Please define your BugSplat database above"
+#endif
+
 void stackFrame1();
 void stackFrame2();
 void stackFrame3();
@@ -31,12 +38,13 @@ Java_com_bugsplat_my_1android_1crasher_MainActivity_initializeCrashpad(
     FilePath metricsDir(dataDir + "/crashpad");
 
     // Crashpad upload URL for BugSplat database
-    string url = "https://fred.bugsplat.com/post/bp/crash/crashpad.php";
+    string database = BUGSPLAT_DATABASE;
+    string url = "https://" + database + ".bugsplat.com/post/bp/crash/crashpad.php";
 
     // Crashpad annotations
     map<string, string> annotations;
     annotations["format"] = "minidump";             // Required: Crashpad setting to save crash as a minidump
-    annotations["database"] = "fred";               // Required: BugSplat appName
+    annotations["database"] = database;             // Required: BugSplat database
     annotations["product"] = "my-android-crasher";  // Required: BugSplat appName
     annotations["version"] = "1.0.1";               // Required: BugSplat appVersion
     annotations["key"] = "key!";                    // Optional: BugSplat key field

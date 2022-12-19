@@ -24,7 +24,7 @@ To get started, install [Android Studio](https://developer.android.com/studio/) 
 Next, clone this repository.
 
 ```sh
-git clone https://github.com/BugSplat-Git/my-android.git
+git clone https://github.com/BugSplat-Git/my-android-crasher.git
 ```
 
 [Build and run](https://developer.android.com/studio/run) the app, this should cause the Android NDK to be installed if it isn't installed already.
@@ -39,7 +39,7 @@ You can run one the [symupload scripts](https://github.com/BugSplat-Git/my-andro
 
 Once you've uploaded symbols, run the application without making any code changes so the project isn't rebuilt. If the IDE does trigger a build, be sure to re-upload symbols. When the app loads, tap the **Crash** button to generate a crash.
 
-Navigate to BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes?database=Fred&c0=appName&f0=CONTAINS&v0=my-android-crasher) page to see a list of recent my-android-crasher crashes. Click the link in the ID column to see full debug information for the generated crash.
+Navigate to BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes?c0=appName&f0=CONTAINS&v0=my-android-crasher) page to see a list of recent my-android-crasher crashes. Click the link in the ID column to see full debug information for the generated crash.
 
 If everything went correctly, you should see something that resembles the following.
 
@@ -116,16 +116,15 @@ target_link_libraries( # Specifies the target library.
 
 ```cpp
 extern "C" JNIEXPORT jboolean JNICALL
-Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
+Java_com_bugsplat_my_1android_1crasher_MainActivity_initializeCrashpad(
         JNIEnv* env,
         jobject /* this */,
         jstring appDataDir,
         jstring libDir
     ) {
-
     // Device file paths
-    string nativeLibraryDir = env->GetStringUTFChars(libDir, 0);
-    string dataDir = env->GetStringUTFChars(appDataDir, 0);
+    string nativeLibraryDir = env->GetStringUTFChars(libDir, nullptr);
+    string dataDir = env->GetStringUTFChars(appDataDir, nullptr);
 
     // Crashpad file paths
     FilePath handler(nativeLibraryDir + "/libcrashpad_handler.so");
@@ -133,29 +132,30 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     FilePath metricsDir(dataDir + "/crashpad");
 
     // Crashpad upload URL for BugSplat database
-    string url = "http://fred.bugsplat.com/post/bp/crash/crashpad.php";
+    string database = BUGSPLAT_DATABASE;
+    string url = "https://" + database + ".bugsplat.com/post/bp/crash/crashpad.php";
 
     // Crashpad annotations
     map<string, string> annotations;
-    annotations["format"] = "minidump";           // Required: Crashpad setting to save crash as a minidump
-    annotations["database"] = "fred";             // Required: BugSplat appName
-    annotations["product"] = "AndroidCrasher"; // Required: BugSplat appName
-    annotations["version"] = "1.0.1";             // Required: BugSplat appVersion
-    annotations["key"] = "Samplekey";            // Optional: BugSplat key field
-    annotations["user"] = "fred@bugsplat.com";    // Optional: BugSplat user email
+    annotations["format"] = "minidump";             // Required: Crashpad setting to save crash as a minidump
+    annotations["database"] = database;             // Required: BugSplat database
+    annotations["product"] = "my-android-crasher";  // Required: BugSplat appName
+    annotations["version"] = "1.0.1";               // Required: BugSplat appVersion
+    annotations["key"] = "key!";                    // Optional: BugSplat key field
+    annotations["user"] = "fred@bugsplat.com";      // Optional: BugSplat user email
     annotations["list_annotations"] = "Sample comment"; // Optional: BugSplat crash description
 
     // Crashpad arguments
     vector<string> arguments;
-    arguments.push_back("--no-rate-limit");
+    arguments.emplace_back("--no-rate-limit");
 
     // Crashpad local database
     unique_ptr<CrashReportDatabase> crashReportDatabase = CrashReportDatabase::Initialize(reportsDir);
-    if (crashReportDatabase == NULL) return false;
+    if (crashReportDatabase == nullptr) return false;
 
     // Enable automated crash uploads
     Settings *settings = crashReportDatabase->GetSettings();
-    if (settings == NULL) return false;
+    if (settings == nullptr) return false;
     settings->SetUploadsEnabled(true);
 
     // File paths of attachments to be uploaded with the minidump file at crash time - default bundle limit is 20MB
@@ -164,13 +164,21 @@ Java_com_example_androidcrasher_MainActivity_initializeCrashpad(
     attachments.push_back(attachment);
 
     // Start Crashpad crash handler
-    static CrashpadClient *client = new CrashpadClient();
-    bool status = client->StartHandlerAtCrash(handler, reportsDir, metricsDir, url, annotations, arguments, attachments);
+    auto *client = new CrashpadClient();
+    bool status = client->StartHandlerAtCrash(
+        handler,
+        reportsDir,
+        metricsDir,
+        url,
+        annotations,
+        arguments,
+        attachments
+    );
     return status;
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_com_example_androidcrasher_MainActivity_crash(
+Java_com_bugsplat_my_1android_1crasher_MainActivity_crash(
         JNIEnv* env,
         jobject /* this */) {
 
@@ -192,7 +200,7 @@ void stackFrame3() {
 }
 
 void crash() {
-    *(volatile int *)0 = 0;
+    *(volatile int *)nullptr = 0;
 }
 ```
 
