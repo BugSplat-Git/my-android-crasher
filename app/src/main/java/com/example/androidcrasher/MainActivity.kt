@@ -1,11 +1,12 @@
-package com.bugsplat.my_android_crasher
+package com.example.my_android_crasher
 
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.bugsplat.my_android_crasher.databinding.ActivityMainBinding
+import com.example.my_android_crasher.databinding.ActivityMainBinding
+import com.bugsplat.android.BugSplatBridge;
 import java.io.IOException
 import java.io.OutputStreamWriter
 
@@ -19,16 +20,12 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        writeLogFile()
+        //writeLogFile()
 
         val info = applicationInfo
-        val initialized = initializeCrashpad(
-            info.dataDir,
-            info.nativeLibraryDir
-        )
-        val text = if(initialized) "initialized" else "fail"
+        val initialized = BugSplatBridge.initBugSplat(this, "fred", "MyAndroidCrasher", "2.0.0")
 
-        binding.sampleText.text = text
+        binding.sampleText.text = "initialized"
     }
 
     fun btnCrashClick(view: View) {
@@ -55,13 +52,12 @@ class MainActivity : AppCompatActivity() {
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    external fun initializeCrashpad(dataDir: String, nativeLibraryDir: String): Boolean
     external fun crash(): Boolean
 
     companion object {
         // Used to load the 'native-lib' library on application startup.
         init {
-            System.loadLibrary("native-lib")
+            System.loadLibrary("crash-lib")
         }
     }
 }

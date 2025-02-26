@@ -27,7 +27,7 @@ android {
 
     sourceSets {
         main {
-            jniLibs.srcDirs = ['src/main/cpp/crashpad/lib']
+            //jniLibs.srcDirs = ['src/main/cpp/crashpad/lib']
         }
     }
     packagingOptions {
@@ -41,11 +41,22 @@ android {
             path file('src/main/cpp/CMakeLists.txt')
         }
     }
-    namespace 'com.bugsplat.my_android_crasher'
+    namespace 'com.example.my_android_crasher'
+}
+
+// Add flatDir repository for .aar files
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    // Replace fileTree for .jar with .aar inclusion
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar']) // Include .aar files
+    // Or specify the exact .aar if preferred:
+    // implementation(name: 'crashpad', ext: 'aar')
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
