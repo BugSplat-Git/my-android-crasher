@@ -20,10 +20,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //writeLogFile()
+        val attachmentFileName = "log.txt"
+        writeLogFile(attachmentFileName)
 
-        val info = applicationInfo
-        val initialized = BugSplatBridge.initBugSplat(this, "fred", "MyAndroidCrasher", "2.0.0")
+        val attachmentPath = applicationContext.getFileStreamPath(attachmentFileName).absolutePath
+        BugSplatBridge.initBugSplat(this, "fred", "my-android-crasher", "2.0.0", arrayOf(attachmentPath))
 
         binding.sampleText.text = "initialized"
     }
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         crash()
     }
 
-    private fun writeLogFile() {
+    private fun writeLogFile(fileName: String) {
         try {
             val outputStreamWriter = OutputStreamWriter(
                 applicationContext.openFileOutput(
-                    "attachment.txt",
+                    fileName,
                     Context.MODE_PRIVATE
                 )
             )
